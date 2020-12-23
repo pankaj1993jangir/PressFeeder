@@ -7,9 +7,12 @@ import pankaj.com.pressfeeder.di.ActivityScope
 import pankaj.com.pressfeeder.domain.languageselector.interactor.LanguageSelectorUseCase
 import pankaj.com.pressfeeder.domain.languageselector.repository.LanguageSelectorRepository
 import pankaj.com.pressfeeder.presentation.language.view.LanguageActivity
+import pankaj.com.pressfeeder.presentation.language.view.LanguageSelectorView
+import pankaj.com.pressfeeder.presentation.language.view.LanguageSelectorViewImpl
 import retrofit2.Retrofit
 import javax.inject.Named
 import javax.inject.Singleton
+
 
 @Module
 class LanguageSelectorModule(private var activity: LanguageActivity) {
@@ -26,5 +29,10 @@ class LanguageSelectorModule(private var activity: LanguageActivity) {
         return LanguageSelectorUseCase(lsRepo)
     }
 
+    @Provides
+    @ActivityScope
+    fun provideLanguageSelectorView(): LanguageSelectorView {
+        return LanguageSelectorViewImpl(activity)
+    }
 
 }
